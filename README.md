@@ -16,7 +16,7 @@ wkj=TF-IDF(tk,dj)/（sum文档数量(s=1toT)（TF-IDF(ts,dj））^1/2
 在后面就是利用余弦相似度来计算相似度。
 
 
-###
+#程序开始
 import sys
 import jieba
 import string
@@ -24,7 +24,7 @@ import re
 from collections import Counter
 reload(sys)
 sys.setdefaultencoding('utf-8')  # 设置默认编码为utf-8
-## 计算词频的例子
+# 计算词频的例子
 def com_tf():
     f = open('data/7s.txt', 'r')
     data = f.read()
