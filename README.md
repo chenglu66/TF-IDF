@@ -14,12 +14,14 @@ TF（tk，dj）=fkj/max（z）fzj
 后的权重应该是归一化之后的权重，这样在计算相似度上面不会带来不利影响，
 wkj=TF-IDF(tk,dj)/（sum文档数量(s=1toT)（TF-IDF(ts,dj））^1/2
 在后面就是利用余弦相似度来计算相似度。
+
+
+###
 import sys
 import jieba
 import string
 import re
 from collections import Counter
-
 reload(sys)
 sys.setdefaultencoding('utf-8')  # 设置默认编码为utf-8
 ## 计算词频的例子
