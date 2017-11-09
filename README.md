@@ -15,8 +15,8 @@ TF（tk，dj）=fkj/max（z）fzj
 wkj=TF-IDF(tk,dj)/（sum文档数量(s=1toT)（TF-IDF(ts,dj））^1/2
 在后面就是利用余弦相似度来计算相似度。
 
+# 程序开始
 
-#程序开始
 import sys
 import jieba
 import string
