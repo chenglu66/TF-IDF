@@ -62,4 +62,88 @@ def com_tf():#
 
 
 if __name__ == '__main__':
-    com_tf()
+    com_tf()
+# 上代码
+
+#TF-IDF
+
+#从txt文件中读取信息(分词，停词，转换)
+
+def loadstop(filename):
+
+    fr=open(filename)
+    
+    temp=[]
+    
+    for line in fr.readlines():
+    
+        temp.append(line.strip())
+        
+    return temp
+    
+def loaddata(filename):
+
+    fr=open(filename)
+    
+    data=fr.read().strip()
+    
+    data2 = jieba.cut(data)  # 分词
+    #读取停词表
+    temp1=[]
+    
+    list1=loadstop('D:\Desktop\论文相关\中文停用词表.txt')
+    
+    for i in data2:
+    
+        if str(i) in list1 or str(i)==' ':
+        
+            pass
+            
+        elif str(i)=='\n' or str(i)=='\t':
+        
+            pass
+            
+        else:
+        
+            temp1.append(i)
+            
+    return temp1
+    
+#计算TF-IDF
+
+#先做一篇文档的，因为我把文章放到一个txt里面了
+
+def caculateweight(filname):
+
+    list2=loaddata(filname)
+    
+    dict1={}
+    
+    for i in list2:
+    
+        dict1[i]=dict1.get(i,0)+1
+        
+    arry=sorted(dict1.items(),key=lambda x:x[1],reverse=True)
+    
+    m=len(list(arry))
+    
+    max1=arry[0][1]
+    
+    dict2={}
+    
+    for i in arry:
+    
+        dict2[i[0]]=i[1]/max1
+        
+    dict2=sorted(dict2.items(),key=lambda x:x[1],reverse=True)
+    
+    print(dict2[0:10])
+    
+def main():
+
+    caculateweight('D:\Desktop\论文第一章查重.txt')
+    
+if __name__=='__main__':
+
+    main()
+    
