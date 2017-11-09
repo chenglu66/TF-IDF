@@ -145,5 +145,6 @@ def main():
     
 if __name__=='__main__':
 
-    main()
-    
+    main()
+#太晚了，做会ppt休息了，放图明天接着码
+![image](https://github.com/chenglu66/TF-IDF/blob/master/%E6%97%A0%E6%A0%87%E9%A2%98.png)
