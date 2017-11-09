@@ -17,17 +17,17 @@ wkj=TF-IDF(tk,dj)/（sum文档数量(s=1toT)（TF-IDF(ts,dj））^1/2
 
 # 程序开始
 
-import sys
-import jieba
-import string
-import re
-from collections import Counter
-reload(sys)
+import sys#
+import jieba#
+import string#
+import re#
+from collections import Counter#
+reload(sys)#
 sys.setdefaultencoding('utf-8')  # 设置默认编码为utf-8
 # 计算词频的例子
-def com_tf():
-    f = open('data/7s.txt', 'r')
-    data = f.read()
+def com_tf():#
+    f = open('data/7s.txt', 'r')#
+    data = f.read()#
     data_temp = data.decode('utf-8')  # 转换为unicode编码形式
     data = ''.join(re.findall(u'[\u4e00-\u9fff]+', data_temp))  # 必须为unicode类型，取出所有中文字符
     # sts = data.translate(None, string.punctuation)            # 删除英文的标点符号，中文标点不支持。
