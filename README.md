@@ -148,3 +148,79 @@ if __name__=='__main__':
     main()
 #太晚了，做会ppt休息了，放图明天接着码
 ![image](https://github.com/chenglu66/TF-IDF/blob/master/%E6%97%A0%E6%A0%87%E9%A2%98.png)
+import sys#
+import jieba#
+import string#
+import re#
+from collections import Counter#
+from numpy import *
+#TF-IDF
+#从txt文件中读取信息(分词，停词，转换)
+def loadstop(filename):
+
+    fr=open(filename)
+    temp=[]
+    for line in fr.readlines():
+        temp.append(line.strip())
+    return temp
+    
+def loaddata(filename):
+    fr=open(filename)
+    data=fr.read().strip()
+    data2 = jieba.cut(data)  # 分词
+    #读取停词表
+    temp1=[]
+    list1=loadstop('D:\Desktop\论文相关\中文停用词表.txt')
+    for i in data2:
+        if str(i) in list1 or str(i)==' ':
+            pass
+        elif str(i)=='\n' or str(i)=='\t':
+            pass
+        else:
+            temp1.append(i)
+    return temp1
+#计算TF-IDF
+#先做一篇文档的，因为我把文章放到一个txt里面了,这里是初期的不包含逆文档，要是包含逆文档的换就必须保存上一步的结果
+def caculateweight(filname):
+
+    list2=loaddata(filname)
+    dict1={}
+    for i in list2:
+        dict1[i]=dict1.get(i,0)+1
+    arry=sorted(dict1.items(),key=lambda x:x[1],reverse=True)
+    m=len(list(arry))
+    max1=arry[0][1]
+    dict2={}
+    for i in arry:
+        dict2[i[0]]=i[1]/max1
+    dict2=sorted(dict2.items(),key=lambda x:x[1],reverse=True)
+    return list(dict2)
+    print(dict2[0:10])  
+def main():
+    import os  
+path = "D:/Desktop/小说创作" #文件夹目录  
+files= os.listdir(path) #得到文件夹下的所有文件名称 
+s = []  
+for file in files: #遍历文件夹  
+
+     if not os.path.isdir(file): #判断是否是文件夹，不是文件夹才打开  
+          f=path+"/"+ file #打开文件
+          t=caculateweight(f)
+          s.append(list(t))
+g=[]
+for i in s:
+    dict3={}
+    for j in i:
+        nums=0
+        for h in s:
+            for k in h:
+                if j[0]==k[0]:
+                    nums+=1
+                    break
+        dict3[j[0]]=j[1]*log(8/nums)
+        dict4=sorted(dict3.items(),key=lambda x:x[1],reverse=True)
+    g.append(list(dict4))
+for i in g:
+    print(i[0:5])
+if __name__=='__main__':
+    main()
